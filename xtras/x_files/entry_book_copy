@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Entry Book</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+<div class="container-fluid">
+    <div class="navbar-header">
+		<a href="customer_list.php"><h2 class="navbar-brand">Entry Book</h2></a>
+    </div>
+</div>
+</nav>
+
+<div class="container-fluid">
+	<h1 class="mt-2">Entry Book</h1>
+	
+	<form method="post" action="entry_book.php">   <div class="form-group">
+	
+	<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Sr.no</th>
+			<th>Description</th>
+			<th>Submit</th>
+			<th>Ready</th>
+			<th>Packed</th>
+		</tr>
+    </thead>
+    <tbody>
+		<?php
+		$dbc = mysqli_connect('localhost', 'root', '', 'kkmenswear')
+			or die('Error connecting to MySQL server.');
+		
+		$query = "SELECT * FROM entry ORDER BY garb_id desc";
+		
+		$result = mysqli_query($dbc, $query)
+		or die('Error querying database.');
+		
+		while ($row = mysqli_fetch_array($result)) {
+			$sr = $row['sr'];
+			$garb_pairing = $row['garb_pairing'];
+			$garb_type = $row['garb_type'];
+			$garb_color = $row['garb_color'];
+			$garb_description = $row['garb_description'];
+			$garb_submit_date = $row['garb_submit_date'];
+			$garb_ready = $row['garb_ready'];
+			$garb_packed = $row['garb_packed'];
+		?>
+		
+		<tr>
+			<td><a href="customer_info.php?sr=<?php echo $sr; ?>&sv=0"><?php echo $sr; ?></a>-<?php echo $garb_pairing; ?></td>
+			<td><?php echo "$garb_type $garb_color $garb_description"; ?></td>
+			<td><?php echo $garb_submit_date; ?></td>
+			<td><?php echo $garb_ready; ?></td>
+			<td>
+				<input type="text" class="form-control" name="shirt_count" value="" style="width:75%" />
+			</td>
+		</tr>
+		
+		<?php }
+			mysqli_close($dbc);
+		?>
+    </tbody>
+	</table>
+	
+	</div></form>
+	
+</div>
+
+</body>
+</html>

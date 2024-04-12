@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Brand Wall</title>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="brandwall.css">
+</head>
+<body>
+
+<div id="app">
+	<div class="web_pages">
+		<div class="page_list" v-for="(page_list, page_list_key) in web_pages" :key="page_list_key">
+			<div class="page" v-for="(page, page_key) in page_list" :key="page_key">
+				<button @click="selectPage($event, page_key, page)">{{ page }}</button>
+			</div>
+		</div>
+	</div>
+	<div class="brands">
+		<div class="brand" v-for="(brand, brand_key) in brands" :key="brand_key" @click="link(brand)">
+			<img class="logo" :src="brand.home+'favicon.ico'" alt="">
+		</div>
+	</div>
+</div>
+
+<script type="module">
+import { brands } from "./brandwall.js";
+
+const app = Vue.createApp({
+	data() {
+		return {
+			brands: brands,
+			web_pages: {
+				main_page: ['home', 'man', 'woman', 'kids', 'about'],
+				// sub_page: ['home', 'shirt', 'tshirt']
+				sub_page: {
+					shirt: {
+						home: 'shirt',
+					}
+				}
+			},
+			selected : {
+				country: 'in',
+				main_page: 'home',
+				sub_page: 'home',
+			},
+			// link_page: 'home',
+			// show_page: "Home"
+		}
+	},
+	methods: {
+		link(brand) {
+			let link = brand[this.selected.country][this.selected.main_page][this.selected.sub_page];
+			window.open(link, '_blank');
+		},
+		selectPage(event, page_type, page) {
+			this.selected[page_type] = page;
+			// this.show_page = this.pages[this.show_page];
+			
+			// toggle class selected
+			const targetElement = event.target; //const targetElement = event.currentTarget;
+			if (targetElement.classList.contains("selected")) {
+				targetElement.classList.remove("selected");
+			} else {
+				targetElement.classList.add("selected");
+			}
+		}
+	},
+	computed: {},
+	created() {}
+})
+
+const mountedApp = app.mount('#app') 
+</script>
+
+</body>
+</html>
