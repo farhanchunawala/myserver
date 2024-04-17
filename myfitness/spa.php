@@ -8,7 +8,7 @@
 <body>
 
 <div id="app">
-	
+	<!-- {{tracklist}} -->
 	<div class="tracker_section">
 		<div class="tracker_row" style="justify-content:space-between">
 			<div class="targets_cell">Weight:&nbsp
@@ -43,6 +43,8 @@
 			<div class="carb_cell head_title">{{ totalCalories }} ({{ totalCaloriesPercentage }}%)</div>
 		</div>
 		<div class="add_row" @click="toggleFoodList()">+</div>
+		<div class="save" @click="save()">Save</div>
+		<div class="save" @click="reset()" style="margin-right:8px">Reset</div>
 	</div>
 	
 	<!-- Food List popup -->
@@ -118,6 +120,13 @@ const app = Vue.createApp({
 		},
 		toggleFoodList() {
 			this.show_food_list = !this.show_food_list;
+		},
+		save() {
+			localStorage.setItem('tracklist', JSON.stringify(this.tracklist));
+		},
+		reset() {
+			this.tracklist = [];
+			localStorage.setItem('tracklist', JSON.stringify(this.tracklist));
 		}
 	},
 	computed: {
@@ -156,6 +165,11 @@ const app = Vue.createApp({
 		}
 	},
 	created() {
+		// this.reset();
+		const tracklist = localStorage.getItem('tracklist');
+		if (tracklist) {
+			this.tracklist = JSON.parse(tracklist);
+		}
 		this.getFoods();
 	}
 })

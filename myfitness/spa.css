@@ -87,6 +87,22 @@ body {
 	line-height: 36px;
 	font-size: 20px;
 	color: #444444;
+	display: inline-block;
+}
+.tracker_section .save {
+	background-color: #cccccc;
+	cursor: pointer;
+	padding: 0 16px;
+	height: 36px;
+	width: fit-content;
+	border-radius: 4px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 36px;
+	font-weight: 700;
+	color: #444444;
+	display: inline;
+	float: right;
 }
 
 
