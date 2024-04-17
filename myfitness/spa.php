@@ -8,7 +8,7 @@
 <body>
 
 <div id="app">
-	<!-- {{tracklist}} -->
+	
 	<div class="tracker_section">
 		<div class="tracker_row" style="justify-content:space-between">
 			<div class="targets_cell">Weight:&nbsp
@@ -86,12 +86,31 @@ const app = Vue.createApp({
 			],
 			foods: [],
 			tracklist: [],
-			weight: 55.25,
+			weight: 58,
 			calorie_diff: 500,
 			show_food_list: false,
 		}
 	},
 	methods: {
+		loadStorageData() {
+			const tracklist = localStorage.getItem('tracklist');
+			const weight = localStorage.getItem('weight');
+			const calorie_diff = localStorage.getItem('calorie_diff');
+			if (tracklist) this.tracklist = JSON.parse(tracklist);
+			if (weight) this.weight = weight;
+			if (calorie_diff) this.calorie_diff = calorie_diff;
+		},
+		save() {
+			localStorage.setItem('tracklist', JSON.stringify(this.tracklist));
+			localStorage.setItem('weight', this.weight);
+			localStorage.setItem('calorie_diff', this.calorie_diff);
+			alert('Save successful');
+		},
+		reset() {
+			this.tracklist = [];
+			localStorage.setItem('tracklist', JSON.stringify(this.tracklist));
+			alert('Reset successful');
+		},
 		getNutrientAmount(foodNutrients, qty, type, fix) {
 			const index = foodNutrients.findIndex(item => item.nutrient.name == type);  // "Protein","Energy","Carbohydrate, by difference","Total lipid (fat)"
 			let nut = foodNutrients[index].amount/100
@@ -120,13 +139,6 @@ const app = Vue.createApp({
 		},
 		toggleFoodList() {
 			this.show_food_list = !this.show_food_list;
-		},
-		save() {
-			localStorage.setItem('tracklist', JSON.stringify(this.tracklist));
-		},
-		reset() {
-			this.tracklist = [];
-			localStorage.setItem('tracklist', JSON.stringify(this.tracklist));
 		}
 	},
 	computed: {
@@ -166,10 +178,7 @@ const app = Vue.createApp({
 	},
 	created() {
 		// this.reset();
-		const tracklist = localStorage.getItem('tracklist');
-		if (tracklist) {
-			this.tracklist = JSON.parse(tracklist);
-		}
+		this.loadStorageData();
 		this.getFoods();
 	}
 })
