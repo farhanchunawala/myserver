@@ -162,7 +162,7 @@ const app = Vue.createApp({
 			return Math.round(totalCalories);
 		},
 		totalProteinsPercentage() {
-			return Math.round(this.totalProteins/this.avg_proteins*100);
+			return Math.round(this.totalProteins/this.min_proteins*100);
 		},
 		totalCaloriesPercentage() {
 			return Math.round(this.totalCalories/this.target_calories*100);
