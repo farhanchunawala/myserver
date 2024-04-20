@@ -178,7 +178,7 @@ const app = Vue.createApp({
 			return Math.round(this.weight*1.9);
 		},
 		max_proteins() {
-			return Math.round(this.weight*2.2);
+			return Math.round(this.weight*2.3);
 		}
 	},
 	created() {
