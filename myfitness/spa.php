@@ -75,6 +75,7 @@ const app = Vue.createApp({
 				'171450',	// Chicken, broilers or fryers, meat and skin, cooked, roasted
 				'172480',	// Lamb
 				'173424',	// Egg, whole, cooked, hard-boiled
+				'172421',	// Lentils
 				'173441',	// Milk, fluid, 1% fat, without added vitamin A and vitamin D
 				'173414',	// Cheese, Cheddar
 				'1103276',	// Tomato
