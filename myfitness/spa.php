@@ -72,16 +72,21 @@ const app = Vue.createApp({
 			apiKey: 'cHdHtGCvWMJNrwqGlBa5EiP7YMlMtrHmjWToxia6',
 			url: 'https://api.nal.usda.gov/fdc/v1/food/',
 			food_ids: [
+				'171450',	// Chicken, broilers or fryers, meat and skin, cooked, roasted
+				'172480',	// Lamb
 				'173424',	// Egg, whole, cooked, hard-boiled
 				'173441',	// Milk, fluid, 1% fat, without added vitamin A and vitamin D
-				'171450',	// Chicken, broilers or fryers, meat and skin, cooked, roasted
-				'169757',	// Rice, white, long-grain, regular, unenriched, cooked without salt
+				'173414',	// Cheese, Cheddar
+				'1103276',	// Tomato
 				'174924',	// Bread, white, commercially prepared (includes soft bread crumbs)
-				'171015',	// Oil, palm
-				'170000',	// Onions, raw
+				'170001',	// Oninon
 				'170438',	// Potatoes, boiled, cooked in skin, flesh, without salt
-				'1102880',	// Potato, baked, NFS
-				'170093',	// Potatoes, baked, flesh and skin, without salt
+				'169757',	// Rice, white, long-grain, regular, unenriched, cooked without salt
+				'169910',	// Mango
+				'171015',	// Oil, palm
+				// '173430',	// Butter
+				// '1102880',	// Potato, baked, NFS
+				// '170093',	// Potatoes, baked, flesh and skin, without salt
 				// '',	// 
 			],
 			foods: [],
