@@ -84,6 +84,7 @@ const app = Vue.createApp({
 				'170438',	// Potatoes, boiled, cooked in skin, flesh, without salt
 				'169757',	// Rice, white, long-grain, regular, unenriched, cooked without salt
 				'169910',	// Mango
+				'171726',	// Dates
 				'171015',	// Oil, palm
 				// '173430',	// Butter
 				// '1102880',	// Potato, baked, NFS
