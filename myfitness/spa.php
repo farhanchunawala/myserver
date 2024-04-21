@@ -39,8 +39,15 @@
 		<div class="tracker_row tracker_header">
 			<div class="food_cell head_title">Total</div>
 			<div class="qty_cell head_title"></div>
-			<div class="protein_cell head_title">{{ totalProteins }} ({{ totalProteinsPercentage }}%)</div>
-			<div class="carb_cell head_title">{{ totalCalories }} ({{ totalCaloriesPercentage }}%)</div>
+			<div class="protein_cell head_title">
+				<div>{{ totalProteins }} ({{ totalProteinsPercentage }}%)</div>
+				<!-- <div>[{{ proteinRatio }}]</div> -->
+			</div>
+			<div class="carb_cell head_title">
+				<div>{{ caloricDifference }} ({{ totalCaloriesPercentage }}%)</div>
+				<!-- <div>{{ totalCalories }} ({{ totalCaloriesPercentage }}%)</div> -->
+				<!-- <div>{{ caloricDifference }}</div> -->
+			</div>
 		</div>
 		<div class="add_row" @click="toggleFoodList()">+</div>
 		<div class="save" @click="save()">Save</div>
@@ -115,8 +122,8 @@ const app = Vue.createApp({
 		},
 		reset() {
 			this.tracklist = [];
-			localStorage.setItem('tracklist', JSON.stringify(this.tracklist));
-			alert('Reset successful');
+			// localStorage.setItem('tracklist', JSON.stringify(this.tracklist));
+			// alert('Reset successful');
 		},
 		getNutrientAmount(foodNutrients, qty, type, fix) {
 			const index = foodNutrients.findIndex(item => item.nutrient.name == type);  // "Protein","Energy","Carbohydrate, by difference","Total lipid (fat)"
@@ -163,14 +170,23 @@ const app = Vue.createApp({
 			}
 			return Math.round(totalCalories);
 		},
+		caloricDifference() {
+			return Math.round(this.totalCalories - this.maintainceCalories);
+		},
+		proteinRatio() {
+			return (this.totalProteins/this.weight).toFixed(1);
+		},
 		totalProteinsPercentage() {
 			return Math.round(this.totalProteins/this.min_proteins*100);
 		},
 		totalCaloriesPercentage() {
 			return Math.round(this.totalCalories/this.target_calories*100);
 		},
+		maintainceCalories() {
+			return Math.round(this.weight*2.2*14);
+		},
 		target_calories() {
-			return Math.round(this.weight*2.2*14)+parseInt(this.calorie_diff);
+			return this.maintainceCalories+parseInt(this.calorie_diff);
 			// return Math.round(this.weight/100*2.2*14)*100+parseInt(this.calorie_diff);
 		},
 		min_proteins() {
@@ -180,7 +196,7 @@ const app = Vue.createApp({
 			return Math.round(this.weight*1.9);
 		},
 		max_proteins() {
-			return Math.round(this.weight*2.3);
+			return Math.round(this.weight*2.2);
 		}
 	},
 	created() {
