@@ -54,6 +54,7 @@ body {
 	line-height: 1.2;
 	font-size: 10px;
 	display: flex;
+	justify-content: center;
 	align-items: center;
 	padding-right: 2px;
 }
@@ -72,11 +73,12 @@ body {
 	justify-content: center;
 	align-items: center;
 	font-size: 13px;
+	gap: 7px;
 }
 .tracker_section .head_title {
 	font-size: 13px;
 	font-weight: 600;
-	justify-content: center;
+	line-height: 1;
 }
 .tracker_section input {
 	/* background-color: #eaeaea; */

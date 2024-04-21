@@ -51,17 +51,17 @@
 			<div class="carb_cell">{{ getNutrientAmount(food.foodNutrients, food.qty, "Energy", 0) }}</div>
 		</div>
 		<hr>
-		<div class="tracker_row tracker_header">
+		<div class="tracker_row tracker_header" style="height:56px">
 			<div class="food_cell head_title">Total</div>
 			<div class="qty_cell head_title"></div>
-			<div class="protein_cell head_title">
-				<div>{{ totalProteins }} ({{ totalProteinsPercentage }}%)</div>
-				<!-- <div>[{{ proteinRatio }}]</div> -->
+			<div class="protein_cell">
+				<div class="head_title">{{ totalProteins }} ({{ totalProteinsPercentage }}%)</div>
+				<div class="head_title">{{ proteinRatio }}</div>
 			</div>
-			<div class="carb_cell head_title">
-				<div>{{ caloricDifference }} ({{ totalCaloriesPercentage }}%)</div>
-				<!-- <div>{{ totalCalories }} ({{ totalCaloriesPercentage }}%)</div> -->
-				<!-- <div>{{ caloricDifference }}</div> -->
+			<div class="carb_cell">
+				<!-- <div>{{ caloricDifference }} ({{ totalCaloriesPercentage }}%)</div> -->
+				<div class="head_title">{{ totalCalories }} ({{ totalCaloriesPercentage }}%)</div>
+				<div class="head_title">{{ caloricDifference }}</div>
 			</div>
 		</div>
 		<div class="add_row" @click="toggleFoodList()">+</div>
