@@ -11,17 +11,32 @@
 	
 	<div class="tracker_section">
 		<div class="tracker_row" style="justify-content:space-between">
-			<div class="targets_cell">Weight:&nbsp
+			<div class="targets_cell">
+				<div class="targets_label">Weight:&nbsp</div>
 				<input class="targets_input" type="text" v-model="weight">
 			</div>
-			<div class="targets_cell">Calorie Difference:&nbsp
-				<input class="targets_input" type="text" v-model="calorie_diff">
+			<div class="targets_cell">
+				<div class="targets_label">Min Proteins:&nbsp</div>
+				<div class="targets_label">{{min_proteins}}</div>
+			</div>
+			<div class="targets_cell">
+				<div class="targets_label">Max Proteins:&nbsp</div>
+				<div class="targets_label">{{max_proteins}}</div>
 			</div>
 		</div>
 		<div class="tracker_row">
-			<div class="targets_cell" style="flex:0 0 33.33%; max-width:33.33%">Min Proteins: {{min_proteins}}</div>
-			<div class="targets_cell" style="flex:0 0 33.33%; max-width:33.33%">Max Proteins: {{max_proteins}}</div>
-			<div class="targets_cell" style="flex:0 0 33.33%; max-width:33.33%">Target Calories: {{target_calories}}</div>
+			<div class="targets_cell">
+				<div class="targets_label">Calorie Diff:&nbsp</div>
+				<input class="targets_input" type="text" v-model="calorie_diff">
+			</div>
+			<div class="targets_cell">
+				<div class="targets_label">Maintaince Cal:&nbsp</div>
+				<div class="targets_label">{{maintainceCalories}}</div>
+			</div>
+			<div class="targets_cell">
+				<div class="targets_label">Target Cal:&nbsp</div>
+				<div class="targets_label">{{targetCalories}}</div>
+			</div>
 		</div>
 		<div class="tracker_row tracker_header">
 			<div class="food_cell head_title">Foods</div>
@@ -180,12 +195,12 @@ const app = Vue.createApp({
 			return Math.round(this.totalProteins/this.min_proteins*100);
 		},
 		totalCaloriesPercentage() {
-			return Math.round(this.totalCalories/this.target_calories*100);
+			return Math.round(this.totalCalories/this.targetCalories*100);
 		},
 		maintainceCalories() {
 			return Math.round(this.weight*2.2*14);
 		},
-		target_calories() {
+		targetCalories() {
 			return this.maintainceCalories+parseInt(this.calorie_diff);
 			// return Math.round(this.weight/100*2.2*14)*100+parseInt(this.calorie_diff);
 		},

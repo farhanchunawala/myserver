@@ -20,6 +20,7 @@ body {
 .tracker_section .tracker_row {
 	display: flex;
 	flex-wrap: nowrap;
+	justify-content: space-between;
 	border-radius: 6px;
 	height: 32px;
 	margin: 8px 0;
@@ -27,9 +28,18 @@ body {
 .tracker_section .tracker_header {
 	background-color: #cccccc;
 }
+.tracker_section .targets_label {
+	/* max-width: 100px; */
+	display: inline;
+}
 .tracker_section .targets_cell {
 	font-size: 12px;
-	min-width: 33%;
+	/* min-width: 33%; */
+	flex:0 0 33.33%;
+	max-width:33.33%
+	/* display: flex;
+    justify-content: flex-start;
+    align-items: center; */
 }
 .tracker_section .targets_input {
 	width: 42px;
