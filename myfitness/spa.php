@@ -12,29 +12,29 @@
 	<div class="tracker_section">
 		<div class="tracker_row" style="justify-content:space-between">
 			<div class="targets_cell">
-				<div class="targets_label">Weight:&nbsp</div>
+				<div class="targets_label">Weight : &nbsp</div>
 				<input class="targets_input" type="text" v-model="weight">
 			</div>
 			<div class="targets_cell">
-				<div class="targets_label">Min Proteins:&nbsp</div>
+				<div class="targets_label">Min Proteins : &nbsp</div>
 				<div class="targets_label">{{min_proteins}}</div>
 			</div>
 			<div class="targets_cell">
-				<div class="targets_label">Max Proteins:&nbsp</div>
+				<div class="targets_label">Max Proteins : &nbsp</div>
 				<div class="targets_label">{{max_proteins}}</div>
 			</div>
 		</div>
 		<div class="tracker_row">
 			<div class="targets_cell">
-				<div class="targets_label">Calorie Diff:&nbsp</div>
+				<div class="targets_label">Calorie Diff : &nbsp</div>
 				<input class="targets_input" type="text" v-model="calorie_diff">
 			</div>
 			<div class="targets_cell">
-				<div class="targets_label">Maintaince Cal:&nbsp</div>
+				<div class="targets_label">Maintaince Cal : &nbsp</div>
 				<div class="targets_label">{{maintainceCalories}}</div>
 			</div>
 			<div class="targets_cell">
-				<div class="targets_label">Target Cal:&nbsp</div>
+				<div class="targets_label">Target Cal : &nbsp</div>
 				<div class="targets_label">{{targetCalories}}</div>
 			</div>
 		</div>
