@@ -98,6 +98,7 @@ const app = Vue.createApp({
 				'172480',	// Lamb
 				'173424',	// Egg, whole, cooked, hard-boiled
 				'172421',	// Lentils
+				'170397',	// Cauliflower
 				'173441',	// Milk, fluid, 1% fat, without added vitamin A and vitamin D
 				'173414',	// Cheese, Cheddar
 				'1103276',	// Tomato
@@ -107,6 +108,8 @@ const app = Vue.createApp({
 				'169757',	// Rice, white, long-grain, regular, unenriched, cooked without salt
 				'169910',	// Mango
 				'171726',	// Dates
+				'167743',	// Sugarcane Juice
+				'169655',	// Sugar
 				'171015',	// Oil, palm
 				// '173430',	// Butter
 				// '1102880',	// Potato, baked, NFS
@@ -189,7 +192,7 @@ const app = Vue.createApp({
 			return Math.round(this.totalCalories - this.maintainceCalories);
 		},
 		proteinRatio() {
-			return (this.totalProteins/this.weight).toFixed(1);
+			return (this.totalProteins/this.weight).toFixed(2);
 		},
 		totalProteinsPercentage() {
 			return Math.round(this.totalProteins/this.min_proteins*100);
