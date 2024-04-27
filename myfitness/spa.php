@@ -71,7 +71,10 @@
 	
 	<!-- Food List popup -->
 	<div class="foods_section" v-if="show_food_list">
-		<div class="food_row" v-for="(food, food_key) in foods" :key="food_key" @click="addFood(food)">
+		<!-- <div class="search"> -->
+			<input type="text" class="search-bar" placeholder="Search.." v-model="searchQuery" />
+		<!-- </div> -->
+		<div class="food_row" v-for="(food, food_key) in filteredFoods" :key="food_key" @click="addFood(food)">
 			{{ food.description }}
 		</div>
 		<div class="close" @click="toggleFoodList()">
@@ -99,6 +102,7 @@ const app = Vue.createApp({
 				'173424',	// Egg, whole, cooked, hard-boiled
 				'172421',	// Lentils
 				'170397',	// Cauliflower
+				'2395646',	// Indian yoghurt
 				'173441',	// Milk, fluid, 1% fat, without added vitamin A and vitamin D
 				'173414',	// Cheese, Cheddar
 				'1103276',	// Tomato
@@ -120,7 +124,8 @@ const app = Vue.createApp({
 			tracklist: [],
 			weight: 58,
 			calorie_diff: 500,
-			show_food_list: false,
+			searchQuery: '',
+			show_food_list: true,
 		}
 	},
 	methods: {
@@ -174,6 +179,11 @@ const app = Vue.createApp({
 		}
 	},
 	computed: {
+		filteredFoods() {
+			return this.foods.filter((item) => {
+				return item.description.toLowerCase().includes(this.searchQuery.toLowerCase());
+			});
+		},
 		totalProteins() {
 			let totalProteins = 0;
 			for (const food of this.tracklist) {
