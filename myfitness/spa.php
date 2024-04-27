@@ -125,7 +125,7 @@ const app = Vue.createApp({
 			weight: 58,
 			calorie_diff: 500,
 			searchQuery: '',
-			show_food_list: true,
+			show_food_list: false,
 		}
 	},
 	methods: {
