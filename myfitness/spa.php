@@ -175,6 +175,7 @@ const app = Vue.createApp({
 			this.toggleFoodList();
 		},
 		toggleFoodList() {
+			this.searchQuery = '';
 			this.show_food_list = !this.show_food_list;
 		}
 	},
@@ -205,7 +206,7 @@ const app = Vue.createApp({
 			return (this.totalProteins/this.weight).toFixed(2);
 		},
 		totalProteinsPercentage() {
-			return Math.round(this.totalProteins/this.min_proteins*100);
+			return Math.round(this.totalProteins/this.max_proteins*100);
 		},
 		totalCaloriesPercentage() {
 			return Math.round(this.totalCalories/this.targetCalories*100);
