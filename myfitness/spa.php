@@ -100,21 +100,23 @@ const app = Vue.createApp({
 				'171450',	// Chicken, broilers or fryers, meat and skin, cooked, roasted
 				'172480',	// Lamb
 				'173424',	// Egg, whole, cooked, hard-boiled
-				'172421',	// Lentils
-				'170397',	// Cauliflower
-				'2395646',	// Indian yoghurt
 				'173441',	// Milk, fluid, 1% fat, without added vitamin A and vitamin D
+				'2395646',	// Indian yoghurt
 				'173414',	// Cheese, Cheddar
-				'1103276',	// Tomato
+				'171015',	// Oil, palm
+				'169655',	// Sugar
 				'174924',	// Bread, white, commercially prepared (includes soft bread crumbs)
+				'169757',	// Rice, white, long-grain, regular, unenriched, cooked without salt
+				'172421',	// Lentils
 				'170001',	// Oninon
 				'170438',	// Potatoes, boiled, cooked in skin, flesh, without salt
-				'169757',	// Rice, white, long-grain, regular, unenriched, cooked without salt
+				'1103276',	// Tomato
+				'169261',	// Okra
+				'170397',	// Cauliflower
+				'167765',	// Watermelon
 				'169910',	// Mango
 				'171726',	// Dates
 				'167743',	// Sugarcane Juice
-				'169655',	// Sugar
-				'171015',	// Oil, palm
 				// '173430',	// Butter
 				// '1102880',	// Potato, baked, NFS
 				// '170093',	// Potatoes, baked, flesh and skin, without salt
@@ -156,16 +158,30 @@ const app = Vue.createApp({
 			else if (fix>0) nut = nut.toFixed(fix);
 			return nut;
 		},
-		getFoods() {
+		async getFoods() {
 			for (let food_id of this.food_ids) {
 				const requestUrl = `${this.url}${food_id}?&api_key=${this.apiKey}`;
-				axios.get(requestUrl)
-				.then(response => {
+				try {
+					const response = await axios.get(requestUrl);
 					this.foods.push(response.data);
-				}).catch(error => { console.log(error); this.errored1 = true
-				}).finally(() => this.loading1 = false)
+				} catch (error) {
+					console.log(error);
+					this.errored1 = true;
+				} finally {
+					this.loading1 = false;
+				}
 			}
 		},
+		// getFoods() {
+		// 	for (let food_id of this.food_ids) {
+		// 		const requestUrl = `${this.url}${food_id}?&api_key=${this.apiKey}`;
+		// 		axios.get(requestUrl)
+		// 		.then(response => {
+		// 			this.foods.push(response.data);
+		// 		}).catch(error => { console.log(error); this.errored1 = true
+		// 		}).finally(() => this.loading1 = false)
+		// 	}
+		// },
 		// getFood(id) {
 		// 	let index= this.foods.findIndex(obj => obj.fdcId == id);
 		// 	return this.foods[index].description;
